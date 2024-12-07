@@ -1,0 +1,239 @@
+:root {
+  --ff-primary: "Plus Jakarta Sans", sans-serif;
+
+  --primary-lime-clr: hsl(61, 70%, 52%);
+  --primary-red-clr: hsl(4, 69%, 50%);
+  --white: hsl(0, 0%, 100%);
+  --slate-100: hsl(202, 86%, 94%);
+  --slate-300: hsl(203, 41%, 72%);
+  --slate-500: hsl(200, 26%, 54%);
+  --slate-700: hsl(200, 24%, 40%);
+  --slate-900: hsl(202, 55%, 16%);
+  --slate-950: hsl(201, 59%, 10%);
+
+  --fs-100: 1em;
+
+  --fw-100: 500;
+  --fw-200: 700;
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: var(--ff-primary);
+  min-width: 100dvw;
+  background-color: var(--white);
+}
+main {
+  display: grid;
+  gap: 1em;
+}
+.mortgage-form {
+  padding: 2em;
+  color: var(--slate-900);
+  display: grid;
+  gap: 1em;
+  & .title {
+    & h1 {
+      font-size: 1.7em;
+    }
+    & a {
+      color: var(--slate-900);
+      font-size: 0.825em;
+    }
+  }
+}
+form {
+  display: grid;
+  gap: 1em;
+  & label {
+    display: block;
+    font-size: 0.825em;
+    margin-bottom: 0.5em;
+  }
+  & input {
+    width: 100%;
+    outline: none;
+    border: 0;
+    height: 100%;
+    padding-inline: 10px;
+    font-size: 1em;
+    color: var(--slate-900);
+  }
+
+  & .container {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--slate-300);
+    height: 2.15em;
+    border-radius: 0.25em;
+    justify-content: center;
+    & div {
+      font-size: 1em;
+      padding-inline: 10px;
+      text-align: center;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: var(--slate-100);
+      & p {
+        font-size: 0.85em;
+      }
+    }
+  }
+  & .check {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5em;
+    border-radius: 0.25em;
+    height: 2.5em;
+    padding: 0.75em;
+    border: 1px solid var(--slate-300);
+    & input {
+      width: auto;
+      margin-right: 0.75em;
+      outline: var(--slate-500);
+      width: 2em;
+    }
+  }
+  & button {
+    height: 2.75em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125em;
+    font-weight: var(--fw-100);
+    background-color: var(--primary-lime-clr);
+    outline: none;
+    border: 0;
+    border-radius: 100vmax;
+    margin-top: 1em;
+    & img {
+      margin-right: 0.5em;
+    }
+  }
+}
+.result {
+  padding: 2em;
+  background-color: var(--slate-900);
+  color: var(--white);
+  & .empty {
+    display: block;
+    text-align: center;
+    & h2 {
+      margin-block: 1em;
+    }
+  }
+  & .completed {
+    display: none;
+    & h2 {
+      margin-bottom: 1em;
+    }
+    & > p {
+      line-height: 1.5;
+    }
+    & .details {
+      margin-block: 1em;
+      background-color: var(--slate-950);
+      border-radius: 0.3em;
+      border-top: 2px solid var(--primary-lime-clr);
+      padding: 1.5em;
+      padding-top: 1em;
+      & h3 {
+        /* margin-block: 1em; */
+        color: var(--primary-lime-clr);
+        font-size: 2em;
+      }
+      & p {
+        margin-block: 1em;
+      }
+      & h4 {
+        font-size: 1.25em;
+      }
+      & span {
+        display: block;
+        background-color: var(--slate-500);
+        height: 1px;
+        border-radius: 50%;
+        margin: 1em auto;
+      }
+    }
+  }
+}
+.error {
+  border: 1px solid var(--primary-red-clr);
+}
+.error2 {
+  background-color: var(--primary-red-clr);
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-color: var(--slate-300);
+  }
+  main {
+    background-color: var(--white);
+    border-radius: 1em;
+    width: 70%;
+    margin: 4em auto;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+  .mortgage-form {
+    & .title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    & form {
+      display: grid;
+      height: fit-content;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 2fr 2fr 3fr 1.5fr;
+      grid-template-areas:
+        "amount amount"
+        "term rate"
+        "type type"
+        "button button";
+      gap: 0.5em;
+    }
+    & .amount {
+      grid-area: amount;
+    }
+    & .term {
+      grid-area: term;
+    }
+    & .rate {
+      grid-area: rate;
+    }
+    & .type {
+      grid-area: type;
+    }
+    & .btn {
+      grid-area: button;
+      width: 80%;
+    }
+  }
+  & .result {
+    border-start-end-radius: 1em;
+    border-end-end-radius: 1em;
+    border-bottom-left-radius: 4em;
+    & .completed {
+      & .details {
+        margin-top: 2em;
+      }
+    }
+  }
+}
+
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
