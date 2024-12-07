@@ -4,6 +4,7 @@ const completed = document.querySelector(".completed");
 const repayCheck = document.querySelector("#repayment-radio");
 const interestCheck = document.querySelector("#interest-radio");
 submitBtn.addEventListener("click", (e) => {
+  // prevent form submission
   e.preventDefault();
   empty.style.display = "none";
   completed.style.display = "block";
@@ -12,12 +13,9 @@ submitBtn.addEventListener("click", (e) => {
   const rate = document.querySelector("#interest-rate").value;
   const time = document.querySelector("#mortgage-term").value;
 
+  // validate form
   validateForm(amount, time, rate);
 });
-
-// const container = document.querySelector("#container-0");
-// amount.display.border = "1px solid var(--primary-red-clr)";
-// container.display.backgroundColor = "var(--primary-red-clr)";
 
 function validateForm(amt, term, rate) {
   let errorMsg = "This field is required";
@@ -36,10 +34,6 @@ function validateForm(amt, term, rate) {
     amtWrap.appendChild(errorWrap);
     container0.classList.add("error");
     signWrap.classList.add("error2");
-    // container1.classList.add("error");
-    // container1.appendChild(errorWrap);
-    // container2.classList.add("error");
-    // container2.appendChild(errorWrap);
   } else {
     calculateMortgageRepayment(Principal, noMonths, interest);
   }
@@ -52,27 +46,13 @@ function calculateMortgageRepayment(amt, term, rate) {
   const monthlyDue = document.querySelector("#monthly-repayment");
   const totalDue = document.querySelector("#total-repayment");
   if (repayCheck.checked) {
-    monthlyDue.innerText = monthlyRepayment;
-    totalDue.innerText = totalRepayment;
+    monthlyDue.innerText = "\u00A3 " + monthlyRepayment.toFixed(2);
+    totalDue.innerText = "\u00A3 " + totalRepayment.toFixed(2);
   } else if (interestCheck.checked) {
     let monthlyPayDue = amt / term;
     const monthlyInterest = monthlyRepayment - monthlyPayDue;
     const totalInterest = totalRepayment - amt;
-    monthlyDue.innerText = monthlyInterest;
-    totalDue.innerText = totalInterest;
+    monthlyDue.innerText = "\u00A3 " + monthlyInterest.toFixed(2);
+    totalDue.innerText = "\u00A3 " + totalInterest.toFixed(2);
   }
 }
-// let M;
-// let P = 300000;
-// let I = 5.25 / 100 / 12;
-// let N = 25 * 12;
-// M = stackOverflow(P, N, I);
-
-// console.log("Stackoverflow:", M);
-
-// function stackOverflow(p, n, i) {
-//   const monthly = (p * i * Math.pow(1 + i, n)) / (Math.pow(1 + i, n) - 1);
-//   console.log("monthly: ", monthly);
-//   const yearly = monthly * 25 * 12;
-//   console.log("yearly: ", yearly);
-// }
