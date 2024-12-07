@@ -1,8 +1,10 @@
 const submitBtn = document.querySelector(".btn");
+const form = document.querySelector("form");
 const empty = document.querySelector(".empty");
 const completed = document.querySelector(".completed");
 const repayCheck = document.querySelector("#repayment-radio");
 const interestCheck = document.querySelector("#interest-radio");
+const clearBtn = document.querySelector("#clear");
 submitBtn.addEventListener("click", (e) => {
   // prevent form submission
   e.preventDefault();
@@ -56,3 +58,11 @@ function calculateMortgageRepayment(amt, term, rate) {
     totalDue.innerText = "\u00A3 " + totalInterest.toFixed(2);
   }
 }
+
+clearBtn.addEventListener("click", () => {
+  const amt = (document.querySelector("#mortgage-amt").value = "");
+  const term = (document.querySelector("#mortgage-term").value = "");
+  const rate = (document.querySelector("#interest-rate").value = "");
+  repayCheck.checked = false;
+  interestCheck.checked = false;
+});
